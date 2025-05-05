@@ -1,0 +1,96 @@
+openapi: 3.0.4
+info:
+  title: Inditex Products Prices
+  description: Servicio que ofrece los precios de algunos productos de Inditex a una fecha determinada
+  version: '1.0'
+servers:
+  - url: http://localhost:8080/price-service/api/v1
+tags:
+  - name: price
+    description: Servicio de precios del producto
+paths:
+  /price/{brandId}/{productId}:
+    get:
+      tags:
+        - price
+      summary: Obtiene el precio de un producto perteneciente a una marca para una fecha y hora dadas (opcional).
+      description: Devuelve el precio de un producto.
+      operationId: getPrice
+      parameters:
+        - name: brandId
+          in: path
+          description: ID de la marca del producto
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: productId
+          in: path
+          description: ID del producto
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: date
+          in: query
+          description: Fecha en la que se obtendra el precio del producto [2025-05-05T20:34:00]. Nota importante: el sistema considerara que la fecha insertada es en UTC. Si no es indicada, se considerara la fecha y hora actual en UTC.
+          required: false
+          schema:
+            type: string
+            format: date-time
+      responses:
+        '200':
+          description: operacion con exito
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductPrice'
+        '400':
+          description: Parametros de entrada invalidos
+          content:
+            text/plain:
+              schema:
+                type: string
+        '404':
+          description: Precio no encontrado para el producto identificado en la fecha indicada.		    
+        '500':
+          description: Error inesperado
+components:
+  schemas:
+    ProductPrice:
+      type: object
+      required:
+        - brandId
+        - productId
+        - priceList
+        - startDate
+        - endDate
+        - price
+        - currency
+      properties:
+        brandId:
+          type: integer
+          format: int64
+          description: ID de la marca del producto
+        productId:
+          type: integer
+          format: int64
+          description: ID del producto
+        priceList:
+          type: integer
+          description: Tarifa que se aplica
+        startDate:
+          type: string
+          format: date-time
+          description: Fecha de inicio del precio
+        endDate:
+          type: string
+          format: date-time
+          description: Fecha de fin del precio
+        price:
+          type: number
+          format: double
+          description: Precio del producto
+        currency:
+          type: string
+          description: Divisa
