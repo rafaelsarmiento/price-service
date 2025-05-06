@@ -5,3 +5,11 @@ spring:
     url: jdbc:h2:mem:dcbapp
     username: username
     password: changeit
+
+server:
+  servlet:
+    context-path: /price-service
+
+logging:
+  level:
+    com.inditex.price_service: DEBUG

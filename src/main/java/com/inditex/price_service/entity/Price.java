@@ -67,6 +67,5 @@ public class Price {
 
 	public String getCurr() {
 		return curr;
-	}
-	
+	}	
 }
