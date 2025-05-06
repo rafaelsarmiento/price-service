@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: price-service
+  datasource:
+    url: jdbc:h2:mem:dcbapp
+    username: username
+    password: changeit
