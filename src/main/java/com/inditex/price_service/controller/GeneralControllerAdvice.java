@@ -27,4 +27,10 @@ public class GeneralControllerAdvice {
 		log.debug(exception.getMessage());
 	}
 	
+	@ExceptionHandler(exception = Exception.class)
+	@ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR)
+	public void genericException(Exception exception) {
+		log.error("Internal error", exception);
+	}
+	
 }
