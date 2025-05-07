@@ -33,6 +33,20 @@ public class Price {
 		
 	}
 
+	public Price(Long id, long brandId, LocalDateTime startDate, LocalDateTime endDate, int priceList, long productId,
+			int priority, BigDecimal price, String curr) {
+		super();
+		this.id = id;
+		this.brandId = brandId;
+		this.startDate = startDate;
+		this.endDate = endDate;
+		this.priceList = priceList;
+		this.productId = productId;
+		this.priority = priority;
+		this.price = price;
+		this.curr = curr;
+	}
+
 	public Long getId() {
 		return id;
 	}

@@ -42,7 +42,7 @@ public class PriceController {
 				.orElseThrow(() -> new PriceNotFoundException(brandId, productId, dateOrNow));
 	}
 	
-	private record PriceResponse(long brandId, long productId, int priceList, LocalDateTime startDate, LocalDateTime endDate,
+	record PriceResponse(long brandId, long productId, int priceList, LocalDateTime startDate, LocalDateTime endDate,
 			BigDecimal price, String currency) {
 		
 		private static PriceResponse fromPrice(Price price) {
