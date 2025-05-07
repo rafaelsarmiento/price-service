@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.rafa</groupId>
 	<artifactId>price-service</artifactId>
-	<version>1.0.0-SNAPSHOT</version>
+	<version>1.0.0</version>
 	<name>price-service</name>
 	<description>Inditex Products Prices</description>
 	<properties>
